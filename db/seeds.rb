@@ -7,7 +7,12 @@ require 'random_data'
      body:   RandomData.random_paragraph
    )
  end
+ 
  posts = Post.all
+ 
+ unless posts.any?{|a| a.title == "masterpost" && a.body == "masterbody"}
+          Post.create!(title: 'masterpost', body: 'masterbody')
+ end
  
  # Create Comments
 
@@ -16,6 +21,12 @@ require 'random_data'
      post: posts.sample,
      body: RandomData.random_paragraph
    )
+ end
+ 
+ comment= Comment.all
+ 
+ unless comment.any?{|a| a.body == "specialcomment"}
+          Post.create!(body: 'specialcomment')
  end
  
  puts "Seed finished"
