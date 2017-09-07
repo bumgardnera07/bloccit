@@ -29,3 +29,5 @@ group :development, :test do
  gem 'turbolinks'
  
  gem 'bootstrap-sass'
+ 
+ gem 'bcrypt'
