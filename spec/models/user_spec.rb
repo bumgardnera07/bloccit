@@ -23,6 +23,14 @@ RSpec.describe User, type: :model do
      end
    end
    
+   describe "cap user" do
+      let(:user_with_lowercase_name) {User.create!(name: "steve jerbs", email: "steveboy@steve.com", password: "password") }
+      
+      it "should convert the name to capital case" do
+         expect(user_with_lowercase_name.name).to eq("Steve Jerbs")
+      end
+   end
+   
    describe "invalid user" do
      let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com") }
      let(:user_with_invalid_email) { User.new(name: "Bloccit User", email: "") }
