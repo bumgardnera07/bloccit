@@ -4,6 +4,8 @@ class TopicsController < ApplicationController
 
    before_action :authorize_user, except: [:index, :show]
    
+   before_update :mod_check
+   
    def index
      @topics = Topic.all
    end
@@ -71,6 +73,13 @@ class TopicsController < ApplicationController
        flash[:alert] = "You must be an admin to do that."
        redirect_to topics_path
      end
+   end
+   
+   def mod_check
+      unless current_user.admin? || current_user.moderator?
+       flash[:alert] = "You are not authorized to update topics."
+       redirect_to topics_path
+      end
    end
    
 end
